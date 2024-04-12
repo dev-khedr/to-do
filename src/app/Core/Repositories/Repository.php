@@ -21,11 +21,24 @@ abstract class Repository implements RepositoryInterface
         return $this->model->create($data);
     }
 
-    public function list(array $filters, array $columns = ['*'], array $relations = []): Collection|LengthAwarePaginator
+    public function list(array $filters, array $columns = ['*'], array $relations = [], array $conditions = [], array $orConditions = [], array $joins = []): Collection|LengthAwarePaginator
     {
         return array_key_exists('perPage', $filters) ?
             $this->paginate($filters, $columns, $relations) :
             $this->all($filters, $columns, $relations);
+    }
+
+    public function all(array $filters, array $columns = ['*'], array $relations = [], array $conditions = [], array $orConditions = [], array $joins = []): Collection
+    {
+        return $this->query($filters, $columns, $relations, $conditions, $orConditions, $joins)->get();
+    }
+
+    public function paginate(array $filters, array $columns = ['*'], array $relations = [], array $conditions = [], array $orConditions = [], array $joins = []): LengthAwarePaginator
+    {
+        return $this->query($filters, $columns, $relations, $conditions, $orConditions, $joins)->paginate(
+            $filters['perPage'],
+            $filters['page'] ?? null,
+        );
     }
 
     public function find(string|Model $id): ?Model
@@ -61,24 +74,13 @@ abstract class Repository implements RepositoryInterface
         return $this->model->count();
     }
 
-    public function all(array $filters = [], array $columns = ['*'], array $relations = []): Collection
-    {
-        return $this->index($filters, $columns, $relations)->get();
-    }
-
-    public function paginate(array $filters, array $columns = ['*'], array $relations = []): LengthAwarePaginator
-    {
-        return $this->index($filters, $columns, $relations)->paginate(
-            $filters['perPage'],
-            $filters['page'] ?? null,
-        );
-    }
-
-    protected function index(array $filters, array $columns = ['*'], array $relations = []): Builder
+    protected function query(array $filters, array $columns = ['*'], array $relations = [], array $conditions = [], array $orConditions = [], array $joins = []): Builder
     {
         return $this->model->filter($filters)
             ->select($columns)
-            ->with($relations);
+            ->with($relations)
+            ->where($conditions)
+            ->orWhere($orConditions);
     }
 
     protected function isModelInstance(string|Model $id): bool
