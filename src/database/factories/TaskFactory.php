@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserFactory extends Factory
+class TaskFactory extends Factory
 {
     public function definition(): array
     {
         return [
-            'name' => fake()->name,
-            'email' => fake()->unique()->safeEmail,
-            'password' => fake()->password,
+            'title' => fake()->title,
+            'description' => fake()->text,
+            'start_date' => fake()->date,
+            'due_date' => fake()->date,
         ];
     }
 }
