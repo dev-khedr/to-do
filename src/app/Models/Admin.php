@@ -10,8 +10,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable
 {
     use Filterable;
-    use HasUuids;
     use HasFactory;
+    use HasUuids;
 
     protected $fillable = [
         'name',

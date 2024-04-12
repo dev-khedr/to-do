@@ -6,5 +6,4 @@ use EloquentFilter\ModelFilter;
 
 class UserFilter extends ModelFilter
 {
-
 }

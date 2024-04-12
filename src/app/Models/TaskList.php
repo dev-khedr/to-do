@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class TaskList extends Model
 {
     use Filterable;
-    use HasUuids;
     use HasFactory;
+    use HasUuids;
 
     protected $fillable = [
         'title',

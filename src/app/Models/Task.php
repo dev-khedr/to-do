@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Task extends Model
 {
     use Filterable;
-    use HasUuids;
     use HasFactory;
+    use HasUuids;
 
     protected $fillable = [
         'title',

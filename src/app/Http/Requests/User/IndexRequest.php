@@ -12,4 +12,5 @@ class IndexRequest extends FormRequest
             'page' => ['nullable', 'integer', 'min:1'],
             'perPage' => ['nullable', 'integer', 'min:1'],
         ];
-    }}
+    }
+}
