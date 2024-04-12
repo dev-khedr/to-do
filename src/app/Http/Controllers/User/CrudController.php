@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User as Requests;
 use App\Http\Transformers\User\UserTransformer as Transformer;
