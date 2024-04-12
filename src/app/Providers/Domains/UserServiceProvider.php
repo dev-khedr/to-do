@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers\Modules;
+namespace App\Providers\Domains;
 
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
@@ -15,11 +15,6 @@ class UserServiceProvider extends ServiceProvider implements DeferrableProvider
         $this->app->bind(UserRepositoryInterface::class, function () {
             return new UserRepository(new User());
         });
-    }
-
-    public function boot(): void
-    {
-        //
     }
 
     public function provides(): array

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\User;
+
+use App\Core\Traits\CrudHandler;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User as Requests;
 use App\Http\Transformers\User\UserTransformer as Transformer;
@@ -10,17 +12,14 @@ use Illuminate\Http\JsonResponse;
 
 class CrudController extends Controller
 {
-    public function __construct(
-        private readonly UserService $service
-    ) {
-
+    public function __construct(UserService $service)
+    {
+        $this->setService($service);
     }
 
     public function store(Requests\StoreRequest $request): JsonResponse
     {
-        $this->service->create($request->validated());
-
-        return $this->created(__('message.created'));
+        return $this->storeResource($request->validated());
     }
 
     public function index(Requests\IndexRequest $request): JsonResponse
