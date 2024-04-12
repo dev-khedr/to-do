@@ -44,7 +44,7 @@ php artisan migrate:fresh
 php artisan db:seed
 ```
 
-You can access the application at [localhost](http://localhost)
+You can check the application status by visiting [localhost/up](http://localhost/up)
 
 ## License
 
