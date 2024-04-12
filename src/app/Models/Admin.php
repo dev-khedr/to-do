@@ -7,15 +7,14 @@ use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Admin extends Authenticatable implements JWTSubject
 {
     use Filterable;
     use HasFactory;
-    use HasUuids;
     use HasJwt;
+    use HasUuids;
 
     protected $fillable = [
         'name',

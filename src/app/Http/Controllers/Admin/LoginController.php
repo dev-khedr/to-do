@@ -26,7 +26,7 @@ class LoginController extends Controller
             'resource' => fractal_data(
                 auth()->user(),
                 new Transformer,
-            )
+            ),
         ]);
     }
 }

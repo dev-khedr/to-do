@@ -21,7 +21,7 @@ class ProfileController extends Controller
             'resource' => fractal_data(
                 $this->service()->getProfile(),
                 new Transformer,
-            )
+            ),
         ]);
     }
 
@@ -31,7 +31,6 @@ class ProfileController extends Controller
 
         return $this->success(message: __('message.profile_updated'));
     }
-
 
     public function updatePassword(Requests\UpdateProfilePasswordRequest $request): JsonResponse
     {

@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\TaskList;
-use App\Observers\TaskListObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
