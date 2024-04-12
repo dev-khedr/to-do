@@ -4,7 +4,8 @@ use App\Http\Controllers\Task;
 use Illuminate\Support\Facades\Route;
 
 // crud routes
-Route::prefix('v1/tasks')
+Route::prefix('/v1/tasks')
+    ->middleware(['auth:user'])
     ->group(function () {
         Route::post('/', [Task\CrudController::class, 'store']);
         Route::get('/', [Task\CrudController::class, 'index']);
