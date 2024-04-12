@@ -1,6 +1,6 @@
 ## To-Do Application
 
-This is a simple To-Do application.
+This is a simple To-Do application based on Laravel 11.
 
 ## Installation
  
