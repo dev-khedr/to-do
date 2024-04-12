@@ -18,7 +18,7 @@ Then run
 docker-compose up -d
 ```
 
-After the application is up and running, run these commands to finialize the installation
+After the application is up and running, run these commands in the container to finalize the installation
 
 ```bash
 composer install
