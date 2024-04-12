@@ -40,6 +40,8 @@ php artisan migrate
 php artisan db:seed
 ```
 
+You can access the application at `http://localhost`
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
