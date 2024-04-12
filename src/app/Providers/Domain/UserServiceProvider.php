@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers\Domains;
+namespace App\Providers\Domain;
 
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;

@@ -23,7 +23,7 @@ class DomainRoute
 
     private function mapDomainRoutes(): void
     {
-        $domains = glob(base_path('routes/domains/*.php'));
+        $domains = glob(base_path('routes/domain/*.php'));
 
         foreach ($domains as $domain) {
             Route::middleware('api')
