@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin as Requests;
 use App\Http\Transformers\Admin\AdminTransformer as Transformer;
 use App\Models\Admin as Model;
-use App\Services\AdminService;
+use App\Services\AdminService as Service;
 use Illuminate\Http\JsonResponse;
 
 class CrudController extends Controller
 {
-    public function __construct(AdminService $service)
+    public function __construct(Service $service)
     {
         $this->setService($service);
     }

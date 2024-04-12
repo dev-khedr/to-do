@@ -5,6 +5,7 @@ namespace App\Core\Utilities;
 use App\Core\Traits\Responseable as ApiResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -24,6 +25,8 @@ class RenderException
             case $e instanceof NotFoundHttpException:
 
                 return $this->notFound(__('message.not_found'));
+            case $e instanceof ValidationException:
+                return $this->unprocessable($e->errors(), $e->getMessage());
         }
     }
 }

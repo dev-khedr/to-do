@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User as Requests;
 use App\Http\Transformers\User\UserTransformer as Transformer;
 use App\Models\User as Model;
-use App\Services\UserService;
+use App\Services\UserService as Service;
 use Illuminate\Http\JsonResponse;
 
 class CrudController extends Controller
 {
-    public function __construct(UserService $service)
+    public function __construct(Service $service)
     {
         $this->setService($service);
     }
