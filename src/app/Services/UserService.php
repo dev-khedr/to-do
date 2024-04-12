@@ -46,6 +46,6 @@ class UserService extends Service implements ServiceInterface
 
     public function logout(): void
     {
-        auth()->logout();
+        auth()->logout(true);
     }
 }

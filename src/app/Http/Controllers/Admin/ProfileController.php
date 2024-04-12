@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User as Requests;
-use App\Http\Transformers\User\UserTransformer as Transformer;
-use App\Services\UserService as Service;
+use App\Http\Requests\Admin as Requests;
+use App\Http\Transformers\Admin\AdminTransformer as Transformer;
+use App\Services\AdminService as Service;
 use Illuminate\Http\JsonResponse;
 
 class ProfileController extends Controller

@@ -4,7 +4,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
     use CommonFormRequest;
 
@@ -13,6 +13,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => [
                 'required',
+                'sometimes',
                 'string',
                 'max:255',
             ],
@@ -21,13 +22,7 @@ class StoreRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
-                'unique:users,email',
-            ],
-            'password' => [
-                'required',
-                'string',
-                'min:8',
-                'max:16',
+                'unique:users,email,'.auth()->user()->getAuthIdentifier(),
             ],
         ];
     }
