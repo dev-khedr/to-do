@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Core\Services\Contracts\ServiceInterface;
-use App\Core\Traits\ApiResponse;
-use App\Core\Traits\CrudHandler;
+use App\Core\Traits\Controllers\Crudable;
+use App\Core\Traits\Responseable;
 
 abstract class Controller
 {
-    use ApiResponse;
-    use CrudHandler;
+    use Crudable;
+    use Responseable;
 
     protected ServiceInterface $service;
 

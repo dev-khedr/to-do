@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     use CommonFormRequest;
 
@@ -12,7 +12,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$this->route()->originalParameter('id')],
             'password' => ['required', 'string', 'min:8', 'max:16'],
         ];
     }

@@ -2,7 +2,7 @@
 
 namespace App\Core\Utilities;
 
-use App\Core\Traits\ApiResponse as ApiResponseTrait;
+use App\Core\Traits\Responseable as ApiResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

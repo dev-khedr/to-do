@@ -2,12 +2,7 @@
 
 namespace App\Core\Utilities;
 
-use App\Core\Traits\ApiResponse as ApiResponseTrait;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Throwable;
 
 class DomainRoute
 {
