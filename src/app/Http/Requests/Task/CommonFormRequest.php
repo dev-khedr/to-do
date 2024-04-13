@@ -7,9 +7,9 @@ trait CommonFormRequest
     public function attributes(): array
     {
         return [
-            'name' => __('admin.name'),
-            'email' => __('admin.email'),
-            'password' => __('admin.password'),
+            'name' => __('task.attributes.name'),
+            'email' => __('task.attributes.email'),
+            'password' => __('task.attributes.password'),
         ];
     }
 }
