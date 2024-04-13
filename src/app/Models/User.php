@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Core\Traits\Models\HasJwt;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
