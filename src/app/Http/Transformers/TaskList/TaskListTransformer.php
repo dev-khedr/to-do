@@ -11,6 +11,8 @@ class TaskListTransformer extends TransformerAbstract
     {
         return [
             'id' => $taskList->id,
+            'title' => $taskList->title,
+            'description' => $taskList->description,
             'createdAt' => $taskList->created_at->toDateTimeString(),
             'updatedAt' => $taskList->updated_at->toDateTimeString(),
         ];

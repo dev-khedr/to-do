@@ -7,9 +7,10 @@ trait CommonFormRequest
     public function attributes(): array
     {
         return [
-            'name' => __('task-list.attributes.name'),
-            'email' => __('task-list.attributes.email'),
-            'password' => __('task-list.attributes.password'),
+            'page' => __('task-list.attributes.page'),
+            'perPage' => __('task-list.attributes.perPage'),
+            'title' => __('task-list.attributes.title'),
+            'description' => __('task-list.attributes.description'),
         ];
     }
 }

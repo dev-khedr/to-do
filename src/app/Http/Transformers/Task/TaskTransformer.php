@@ -11,6 +11,11 @@ class TaskTransformer extends TransformerAbstract
     {
         return [
             'id' => $task->id,
+            'title' => $task->title,
+            'description' => $task->description,
+            'status' => $task->status,
+            'startDate' => $task->start_date->toDateTimeString(),
+            'dueDate' => $task->due_date->toDateTimeString(),
             'createdAt' => $task->created_at->toDateTimeString(),
             'updatedAt' => $task->updated_at->toDateTimeString(),
         ];
