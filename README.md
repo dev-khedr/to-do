@@ -46,6 +46,7 @@ php artisan db:seed
 
 You can check the application status by visiting [localhost/up](http://localhost/up)
 
+`ps` you may need to use `chmod` on `storage` firstly to make it writable.
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
