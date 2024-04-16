@@ -1,0 +1,3 @@
+[submodule "src/app-pkg/authentication"]
+	path = src/app-pkg/authentication
+	url = https://github.com/MohamedKhedr700/authentication
