@@ -2,21 +2,20 @@
 
 namespace App\Models;
 
-use App\Core\Traits\Models\HasJwt;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Contracts\Auth\Authenticatable as IlluminateAuthenticatable;
+use Raid\Core\Authentication\Authables\Contracts\Authable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Authable
 {
     use Filterable;
     use HasApiTokens;
     use HasFactory;
-//    use HasJwt;
     use HasUuids;
 
     protected $fillable = [
@@ -39,5 +38,10 @@ class User extends Authenticatable
     public function taskLists(): HasMany
     {
         return $this->hasMany(TaskList::class);
+    }
+
+    public function findForWorker(string $column, mixed $value): ?IlluminateAuthenticatable
+    {
+        return $this->where($column, $value)->first();
     }
 }

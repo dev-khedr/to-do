@@ -40,7 +40,7 @@ return [
 
     'guards' => [
         'admin' => [
-            'driver' => 'jwt',
+            'driver' => 'sanctum',
             'provider' => 'admins',
         ],
         'user' => [
