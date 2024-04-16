@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use App\Core\Traits\Models\CanAuthenticate;
 use EloquentFilter\Filterable;
+use Illuminate\Contracts\Auth\Authenticatable as IlluminateAuthenticatable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Contracts\Auth\Authenticatable as IlluminateAuthenticatable;
 use Raid\Core\Authentication\Authables\Contracts\Authable;
 
 class User extends Authenticatable implements Authable
 {
+    use CanAuthenticate;
     use Filterable;
     use HasApiTokens;
     use HasFactory;
@@ -38,10 +40,5 @@ class User extends Authenticatable implements Authable
     public function taskLists(): HasMany
     {
         return $this->hasMany(TaskList::class);
-    }
-
-    public function findForWorker(string $column, mixed $value): ?IlluminateAuthenticatable
-    {
-        return $this->where($column, $value)->first();
     }
 }
