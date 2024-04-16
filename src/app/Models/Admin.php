@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Raid\Core\Authentication\Authables\Contracts\Authable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Admin extends Authenticatable implements Authable
 {
