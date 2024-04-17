@@ -12,5 +12,7 @@ class UserAuthenticator extends Authenticator
 
     protected string $authable = User::class;
 
-    protected string $defaultChannel = SystemChannel::class;
+    protected array $channels = [
+        SystemChannel::class,
+    ];
 }

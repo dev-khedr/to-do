@@ -11,6 +11,4 @@ class AdminAuthenticator extends Authenticator
     public const NAME = 'admin';
 
     protected string $authable = Admin::class;
-
-    protected string $defaultChannel = SystemChannel::class;
 }
