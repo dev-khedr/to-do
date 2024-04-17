@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Raid\Core\Authentication\Authenticators\Contracts\AuthenticatorInterface;
+use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
 
 abstract class AuthenticationService extends Service implements ServiceInterface
 {
@@ -25,15 +26,9 @@ abstract class AuthenticationService extends Service implements ServiceInterface
     /**
      * @throws Exception|AuthenticationException
      */
-    public function login(array $data): string
+    public function login(array $data): ChannelInterface
     {
-        $channel = $this->getAuthenticator()->attempt($data);
-
-        if ($channel->errors()->any()) {
-            throw new AuthenticationException(__('auth.failed'));
-        }
-
-        return $channel->getStringToken();
+        return $this->getAuthenticator()->attempt($data);
     }
 
     public function getProfile(): Authenticatable

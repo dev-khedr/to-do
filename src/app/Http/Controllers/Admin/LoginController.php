@@ -17,10 +17,17 @@ class LoginController extends Controller
 
     public function login(Requests\LoginRequest $request): JsonResponse
     {
-        $token = $this->service()->login($request->validated());
+        $channel = $this->service()->login($request->validated());
+
+        if ($channel->errors()->any()) {
+            return $this->badRequest(
+                $channel->errors()->toArray(),
+                $channel->errors()->first(),
+            );
+        }
 
         return $this->success([
-            'token' => $token,
+            'token' => $channel->getStringToken(),
             'resource' => fractal_data(
                 auth()->user(),
                 new Transformer,
