@@ -17,7 +17,7 @@ abstract class AuthenticationService extends Service implements ServiceInterface
         $this->authenticator = $authenticator;
     }
 
-    public function authenticator(): AuthenticatorInterface
+    public function getAuthenticator(): AuthenticatorInterface
     {
         return $this->authenticator;
     }
@@ -27,7 +27,7 @@ abstract class AuthenticationService extends Service implements ServiceInterface
      */
     public function login(array $data): string
     {
-        $channel = $this->authenticator()->attempt($data);
+        $channel = $this->getAuthenticator()->attempt($data);
 
         if ($channel->errors()->any()) {
             throw new AuthenticationException(__('auth.failed'));
