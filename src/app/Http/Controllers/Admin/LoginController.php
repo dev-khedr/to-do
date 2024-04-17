@@ -27,6 +27,7 @@ class LoginController extends Controller
         }
 
         return $this->success([
+            'channel' => $channel->getName(),
             'token' => $channel->getStringToken(),
             'resource' => fractal_data(
                 auth()->user(),

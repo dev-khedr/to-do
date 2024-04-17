@@ -18,13 +18,7 @@ class LoginController extends Controller
 
     public function login(Requests\LoginRequest $request): JsonResponse
     {
-        $start = microtime(true);
-
         $channel = $this->service()->login($request->validated());
-
-        $end = microtime(true) - $start;
-
-        dump($end);
 
         if ($channel->errors()->any()) {
             return $this->badRequest(
@@ -34,6 +28,7 @@ class LoginController extends Controller
         }
 
         return $this->success([
+            'channel' => $channel->getName(),
             'token' => $channel->getStringToken(),
             'resource' => fractal_data(
                 auth()->user(),
