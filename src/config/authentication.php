@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Authentication\Channels\SystemChannel;
-use App\Http\Authentication\Rules\MatchingPasswordRule;
+use Raid\Core\Authentication\Channels\DefaultChannel;
+use Raid\Core\Authentication\Rules\MatchingPasswordRule;
 use Raid\Core\Authentication\Workers\EmailWorker;
 use Raid\Core\Authentication\Workers\PhoneWorker;
 
@@ -21,6 +22,6 @@ return [
     'channel_rules' => [
         SystemChannel::class => [
             MatchingPasswordRule::class,
-        ]
+        ],
     ],
 ];
