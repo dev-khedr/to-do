@@ -11,14 +11,19 @@ use Illuminate\Support\Collection;
 abstract class Repository implements RepositoryInterface
 {
     public function __construct(
-        protected readonly Model $model
+        private readonly Model $model
     ) {
         //
     }
 
+    public function getModel(): Model
+    {
+        return $this->model;
+    }
+
     public function create(array $data): Model
     {
-        return $this->model->create($data);
+        return $this->getModel()->create($data);
     }
 
     public function list(array $filters, array $columns = ['*'], array $relations = [], array $conditions = [], array $orConditions = [], array $joins = []): Collection|LengthAwarePaginator
@@ -45,14 +50,14 @@ abstract class Repository implements RepositoryInterface
     {
         return $this->isModelInstance($id) ?
             $id :
-            $this->model->find($id);
+            $this->getModel()->find($id);
     }
 
     public function findOrFail(string|Model $id): Model
     {
         return $this->isModelInstance($id) ?
             $id :
-            $this->model->findOrFail($id);
+            $this->getModel()->findOrFail($id);
     }
 
     public function update(string|Model $id, array $data): bool
@@ -71,12 +76,13 @@ abstract class Repository implements RepositoryInterface
 
     public function count(): int
     {
-        return $this->model->count();
+        return $this->getModel()->count();
     }
 
     protected function query(array $filters, array $columns = ['*'], array $relations = [], array $conditions = [], array $orConditions = [], array $joins = []): Builder
     {
-        return $this->model->filter($filters)
+        return $this->getModel()
+            ->filter($filters)
             ->select($columns)
             ->with($relations)
             ->where($conditions)
