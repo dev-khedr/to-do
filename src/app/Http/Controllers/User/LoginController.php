@@ -19,13 +19,7 @@ class LoginController extends Controller
 
     public function login(Requests\LoginRequest $request): JsonResponse
     {
-        $start = microtime(true);
-
         $token = $this->service()->login($request->validated());
-
-        $end = microtime(true) - $start;
-
-        dump($end);
 
         return $this->success([
             'token' => $token,
