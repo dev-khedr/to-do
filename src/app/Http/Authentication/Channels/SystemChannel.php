@@ -9,8 +9,4 @@ use Raid\Core\Authentication\Workers\EmailWorker;
 class SystemChannel extends Channel implements ChannelInterface
 {
     public const NAME = 'system';
-
-    protected array $workers = [
-        EmailWorker::class,
-    ];
 }
