@@ -34,4 +34,9 @@ class Admin extends Authenticatable implements Authable
             'password' => 'hashed',
         ];
     }
+
+    public function isVerified(): true
+    {
+        return true;
+    }
 }

@@ -37,6 +37,11 @@ class User extends Authenticatable implements Authable
         ];
     }
 
+    public function isVerified(): true
+    {
+        return true;
+    }
+
     public function taskLists(): HasMany
     {
         return $this->hasMany(TaskList::class);

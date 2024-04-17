@@ -18,7 +18,13 @@ class LoginController extends Controller
 
     public function login(Requests\LoginRequest $request): JsonResponse
     {
+        $start = microtime(true);
+
         $channel = $this->service()->login($request->validated());
+
+        $end = microtime(true) - $start;
+
+        dump($end);
 
         if ($channel->errors()->any()) {
             return $this->badRequest(
