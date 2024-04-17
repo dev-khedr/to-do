@@ -8,7 +8,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Raid\Core\Authentication\Authenticators\Contracts\AuthenticatorInterface;
 
-abstract class AccountService extends Service implements ServiceInterface
+abstract class AuthenticationService extends Service implements ServiceInterface
 {
     protected AuthenticatorInterface $authenticator;
 

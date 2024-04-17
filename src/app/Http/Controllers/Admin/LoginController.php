@@ -12,8 +12,6 @@ class LoginController extends Controller
 {
     public function __construct(Service $service)
     {
-        config(['auth.defaults.guard' => 'admin']);
-
         $this->setService($service);
     }
 
