@@ -53,6 +53,6 @@ abstract class AuthenticationService extends Service implements ServiceInterface
 
     public function logout(): void
     {
-        auth()->logout(true);
+        auth()->user()->currentAccessToken()->delete();
     }
 }
