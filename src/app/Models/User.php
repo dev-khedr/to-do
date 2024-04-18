@@ -7,6 +7,7 @@ use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Raid\Core\Authentication\Authenticatable\Contracts\AuthenticatableInterface;
@@ -44,5 +45,10 @@ class User extends Authenticatable implements AuthenticatableInterface
     public function taskLists(): HasMany
     {
         return $this->hasMany(TaskList::class);
+    }
+
+    public function verification(): MorphOne
+    {
+        return $this->morphOne(Verification::class, 'verifiable');
     }
 }

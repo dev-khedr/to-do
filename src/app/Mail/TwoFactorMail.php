@@ -16,6 +16,7 @@ class TwoFactorMail extends Mailable
 
     public function __construct(
         private readonly string $name,
+        private readonly int $code,
     ) {
         //
     }
@@ -30,7 +31,7 @@ class TwoFactorMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'welcome',
+            view: 'mail.two-factor-code',
             with: $this->getContent(),
         );
     }
@@ -39,6 +40,7 @@ class TwoFactorMail extends Mailable
     {
         return [
             'name' => $this->name,
+            'code' => $this->code,
         ];
     }
 }
