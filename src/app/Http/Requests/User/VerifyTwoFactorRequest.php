@@ -56,7 +56,7 @@ class VerifyTwoFactorRequest extends FormRequest
             'verifiableId' => $this->input('verifiableId'),
             'code' => $this->input('code'),
             'type' => $this->getType($this->route('type')),
-//            'expiredAt' => now()->subMinutes(5),
+            //            'expiredAt' => now()->subMinutes(5),
         ])->first();
     }
 

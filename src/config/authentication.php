@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Authentication\Channels\SystemChannel;
 use App\Http\Authentication\Channels\TwoFactorEmailChannel;
 use App\Http\Authentication\Channels\TwoFactorPhoneChannel;
-use App\Http\Authentication\Channels\SystemChannel;
 use App\Http\Authentication\Rules\VerifiedRule;
 use App\Http\Authentication\Steps\TwoFactorEmailStep;
 use App\Http\Authentication\Steps\TwoFactorPhoneStep;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Authentication\Authenticators;
 
-use App\Http\Authentication\Channels\TwoFactorEmailChannel;
 use App\Http\Authentication\Channels\SystemChannel;
+use App\Http\Authentication\Channels\TwoFactorEmailChannel;
 use App\Http\Authentication\Steps\TwoFactorPhoneStep;
 use App\Models\User;
 use Raid\Core\Authentication\Authenticators\Authenticator;

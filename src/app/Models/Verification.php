@@ -19,7 +19,6 @@ class Verification extends Model
         'code',
     ];
 
-
     public function getSmsMessage(): string
     {
         return __('message.verification_sms_message', [

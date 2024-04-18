@@ -1,6 +1,5 @@
 <?php
 
-
 if (! function_exists('generate_code')) {
     function generate_code(int $length = 6): int
     {

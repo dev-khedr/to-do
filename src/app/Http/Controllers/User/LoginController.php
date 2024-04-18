@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Authentication\Channels\TwoFactorEmailChannel;
 use App\Http\Authentication\Channels\TwoFactorPhoneChannel;
-use App\Http\Authentication\Steps\TwoFactorPhoneStep;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Requests\User as Requests;
 use App\Http\Transformers\User\UserTransformer as Transformer;

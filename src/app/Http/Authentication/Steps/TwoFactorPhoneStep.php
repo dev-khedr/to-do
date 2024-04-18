@@ -2,10 +2,8 @@
 
 namespace App\Http\Authentication\Steps;
 
-use App\Core\Integrations\Mail\MailService;
 use App\Core\Integrations\Sms\SmsService;
 use App\Enums\VerificationType;
-use App\Mail\TwoFactorMail;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
 use Raid\Core\Authentication\Steps\Contracts\StepInterface;
 
