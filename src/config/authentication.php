@@ -3,6 +3,7 @@
 use App\Http\Authentication\Channels\TwoFactorEmailChannel;
 use App\Http\Authentication\Channels\TwoFactorPhoneChannel;
 use App\Http\Authentication\Channels\SystemChannel;
+use App\Http\Authentication\Rules\VerifiedRule;
 use App\Http\Authentication\Steps\TwoFactorEmailStep;
 use App\Http\Authentication\Steps\TwoFactorPhoneStep;
 use App\Http\Authentication\Workers\PhoneWorker;
@@ -31,12 +32,15 @@ return [
     'channel_rules' => [
         SystemChannel::class => [
             MatchingPasswordRule::class,
+            VerifiedRule::class,
         ],
         TwoFactorEmailChannel::class => [
             MatchingPasswordRule::class,
+            VerifiedRule::class,
         ],
         TwoFactorPhoneChannel::class => [
             MatchingPasswordRule::class,
+            VerifiedRule::class,
         ],
     ],
 
