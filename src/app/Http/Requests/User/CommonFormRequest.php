@@ -12,6 +12,8 @@ trait CommonFormRequest
             'name' => __('user.attributes.name'),
             'email' => __('user.attributes.email'),
             'password' => __('user.attributes.password'),
+            'verifiableId' => __('user.attributes.verifiableId'),
+            'code' => __('user.attributes.code'),
         ];
     }
 }

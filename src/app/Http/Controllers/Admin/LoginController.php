@@ -18,7 +18,7 @@ class LoginController extends AuthenticationController
     public function login(Requests\LoginRequest $request): JsonResponse
     {
         return $this->authenticationResponse(
-            $this->getService()->login($request->validated()),
+            $this->getService()->attempt($request->validated()),
             new Transformer,
         );
     }

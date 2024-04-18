@@ -21,7 +21,7 @@ class LoginController extends AuthenticationController
     public function login(Requests\LoginRequest $request): JsonResponse
     {
         return $this->authenticationResponse(
-            $this->getService()->login($request->validated()),
+            $this->getService()->attempt($request->validated()),
             new Transformer,
         );
     }
@@ -29,7 +29,7 @@ class LoginController extends AuthenticationController
     public function loginWithTwoFactorEmail(Requests\LoginRequest $request): JsonResponse
     {
         return $this->authenticationResponse(
-            $this->getService()->login(
+            $this->getService()->attempt(
                 $request->validated(),
                 TwoFactorEmailChannel::getName(),
             ),
@@ -40,7 +40,7 @@ class LoginController extends AuthenticationController
     public function loginWithTwoFactorPhone(Requests\LoginRequest $request): JsonResponse
     {
         return $this->authenticationResponse(
-            $this->getService()->login(
+            $this->getService()->attempt(
                 $request->validated(),
                 TwoFactorPhoneChannel::getName(),
             ),

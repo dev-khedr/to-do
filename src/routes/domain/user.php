@@ -11,6 +11,13 @@ Route::prefix('/v1/users/login')
         Route::post('/two-factor/phone', [User\LoginController::class, 'loginWithTwoFactorPhone']);
     });
 
+// verification routes
+Route::prefix('/v1/users/verification')
+    ->group(function () {
+        Route::post('/two-factor/{type}', [User\VerificationController::class, 'verifyTwoFactor'])
+        ->where('type', 'email|phone');
+    });
+
 // profile routes
 Route::prefix('/v1/users/profile')
     ->middleware(['auth:user'])
