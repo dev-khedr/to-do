@@ -18,7 +18,7 @@ abstract class Controller
         $this->service = $service;
     }
 
-    protected function service(): ServiceInterface
+    protected function getService(): ServiceInterface
     {
         return $this->service;
     }

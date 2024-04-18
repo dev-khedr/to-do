@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Authentication\Channels\EmailTwoFactorChannel;
+use App\Http\Authentication\Steps\PhoneTwoFactorStep;
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Requests\User as Requests;
 use App\Http\Transformers\User\UserTransformer as Transformer;
 use App\Services\UserService as Service;
-use Exception;
 use Illuminate\Http\JsonResponse;
-use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
 
-class LoginController extends Controller
+class LoginController extends AuthenticationController
 {
     public function __construct(Service $service)
     {
@@ -19,41 +19,31 @@ class LoginController extends Controller
 
     public function login(Requests\LoginRequest $request): JsonResponse
     {
-        $channel = $this->service()->login($request->validated());
-
-        return $channel->errors()->any() ?
-            $this->failedResponse($channel) :
-            $this->successResponse($channel);
-
+        return $this->authenticationResponse(
+            $this->getService()->login($request->validated()),
+            new Transformer,
+        );
     }
 
-    public function emailTwoFactorLogin()
+    public function emailTwoFactorLogin(Requests\LoginRequest $request): JsonResponse
     {
-
-    }
-
-    public function phoneTwoFactorLogin()
-    {
-
-    }
-
-    private function successResponse(ChannelInterface $channel): JsonResponse
-    {
-        return $this->success([
-            'channel' => $channel->getName(),
-            'token' => $channel->getStringToken(),
-            'resource' => fractal_data(
-                $channel->getAuthenticatable(),
-                new Transformer,
+        return $this->authenticationResponse(
+            $this->getService()->login(
+                $request->validated(),
+                EmailTwoFactorChannel::getName(),
             ),
-        ]);
+            new Transformer,
+        );
     }
 
-    private function failedResponse(ChannelInterface $channel): JsonResponse
+    public function phoneTwoFactorLogin(Requests\LoginRequest $request): JsonResponse
     {
-        return $this->badRequest(
-            $channel->errors()->toArray(),
-            $channel->errors()->first(),
+        return $this->authenticationResponse(
+            $this->getService()->login(
+                $request->validated(),
+                PhoneTwoFactorStep::getName(),
+            ),
+            new Transformer,
         );
     }
 }
