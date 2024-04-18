@@ -5,9 +5,9 @@ use App\Http\Authentication\Channels\PhoneTwoFactorChannel;
 use App\Http\Authentication\Channels\SystemChannel;
 use App\Http\Authentication\Steps\EmailTwoFactorStep;
 use App\Http\Authentication\Steps\PhoneTwoFactorStep;
+use App\Http\Authentication\Workers\PhoneWorker;
 use Raid\Core\Authentication\Rules\MatchingPasswordRule;
 use Raid\Core\Authentication\Workers\EmailWorker;
-use Raid\Core\Authentication\Workers\PhoneWorker;
 
 return [
 

@@ -8,6 +8,7 @@ use App\Http\Transformers\User\UserTransformer as Transformer;
 use App\Services\UserService as Service;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
 
 class LoginController extends Controller
 {
@@ -20,20 +21,39 @@ class LoginController extends Controller
     {
         $channel = $this->service()->login($request->validated());
 
-        if ($channel->errors()->any()) {
-            return $this->badRequest(
-                $channel->errors()->toArray(),
-                $channel->errors()->first(),
-            );
-        }
+        return $channel->errors()->any() ?
+            $this->successResponse($channel) :
+            $this->failedResponse($channel);
 
+    }
+
+    public function emailTwoFactorLogin()
+    {
+
+    }
+
+    public function phoneTwoFactorLogin()
+    {
+
+    }
+
+    private function successResponse(ChannelInterface $channel): JsonResponse
+    {
         return $this->success([
             'channel' => $channel->getName(),
             'token' => $channel->getStringToken(),
             'resource' => fractal_data(
-                auth()->user(),
+                $channel->getAuthenticatable(),
                 new Transformer,
             ),
         ]);
+    }
+
+    private function failedResponse(ChannelInterface $channel): JsonResponse
+    {
+        return $this->badRequest(
+            $channel->errors()->toArray(),
+            $channel->errors()->first(),
+        );
     }
 }
