@@ -33,9 +33,9 @@ abstract class AuthenticationService extends Service implements ServiceInterface
     /**
      * @throws Exception
      */
-    public function login(Authenticatable $authenticatable): ChannelInterface
+    public function login(Authenticatable $authenticatable, string $channel = null): ChannelInterface
     {
-        return $this->getAuthenticator()->login($authenticatable);
+        return $this->getAuthenticator()->login($authenticatable, $channel);
     }
 
 

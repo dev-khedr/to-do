@@ -55,14 +55,14 @@ class VerifyTwoFactorRequest extends FormRequest
         return Verification::filter([
             'verifiableId' => $this->input('verifiableId'),
             'code' => $this->input('code'),
-            'type' => $this->getType(),
+            'type' => $this->getType($this->route('type')),
 //            'expiredAt' => now()->subMinutes(5),
         ])->first();
     }
 
-    private function getType(): string
+    private function getType(string $type): string
     {
-        return $this->route('type') === 'phone' ?
+        return $type === 'phone' ?
             VerificationType::TWO_FACTOR_PHONE :
             VerificationType::TWO_FACTOR_EMAIL;
     }

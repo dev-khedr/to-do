@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Authentication\Channels\TwoFactorEmailChannel;
+use App\Http\Authentication\Channels\TwoFactorPhoneChannel;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User as Requests;
@@ -22,8 +23,15 @@ class VerificationController extends AuthenticationController
         $user = $this->getService()->find($request->input('verifiableId'));
 
         return $this->authenticationResponse(
-            $this->getService()->login($user),
+            $this->getService()->login($user, $this->getChannel($request->route('type'))),
             new Transformer,
         );
+    }
+
+    private function getChannel(string $type): string
+    {
+        return $type === 'phone' ?
+            TwoFactorPhoneChannel::getName() :
+            TwoFactorEmailChannel::getName();
     }
 }
