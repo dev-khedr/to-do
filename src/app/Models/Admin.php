@@ -12,9 +12,9 @@ use Raid\Core\Authentication\Authables\Contracts\AuthenticatableInterface;
 
 class Admin extends Authenticatable implements AuthenticatableInterface
 {
-    use HasAuthenticatable;
-    use HasApiTokens;
     use Filterable;
+    use HasApiTokens;
+    use HasAuthenticatable;
     use HasFactory;
     use HasUuids;
 

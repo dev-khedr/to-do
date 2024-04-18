@@ -13,9 +13,9 @@ use Raid\Core\Authentication\Authenticatable\Contracts\AuthenticatableInterface;
 
 class User extends Authenticatable implements AuthenticatableInterface
 {
-    use HasAuthenticatable;
     use Filterable;
     use HasApiTokens;
+    use HasAuthenticatable;
     use HasFactory;
     use HasUuids;
 

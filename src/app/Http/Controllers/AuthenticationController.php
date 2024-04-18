@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Transformers\User\UserTransformer as Transformer;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\TransformerAbstract;
-use Raid\Core\Authentication\Authenticators\Contracts\AuthenticatorInterface;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
 
 class AuthenticationController extends Controller

@@ -18,13 +18,13 @@ return [
     'channel_workers' => [
         SystemChannel::class => [
             EmailWorker::class,
-            PhoneWorker::class
+            PhoneWorker::class,
         ],
         EmailTwoFactorChannel::class => [
             EmailWorker::class,
         ],
         PhoneTwoFactorChannel::class => [
-            PhoneWorker::class
+            PhoneWorker::class,
         ],
     ],
 
