@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Authentication\Authenticators\AdminAuthenticator;
+use App\Http\Authentication\Authenticators\UserAuthenticator;
 use App\Models\Admin;
 use App\Models\User;
 
@@ -39,11 +41,11 @@ return [
     */
 
     'guards' => [
-        'admin' => [
+        AdminAuthenticator::getName() => [
             'driver' => 'sanctum',
             'provider' => 'admins',
         ],
-        'user' => [
+        UserAuthenticator::getName() => [
             'driver' => 'sanctum',
             'provider' => 'users',
         ],

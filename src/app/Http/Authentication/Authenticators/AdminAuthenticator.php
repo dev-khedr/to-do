@@ -11,7 +11,7 @@ class AdminAuthenticator extends Authenticator implements AuthenticatorInterface
 {
     public const NAME = 'admin';
 
-    protected string $authable = Admin::class;
+    protected string $authenticatable = Admin::class;
 
     protected array $channels = [
         SystemChannel::class,
