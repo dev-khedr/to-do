@@ -22,8 +22,8 @@ class LoginController extends Controller
         $channel = $this->service()->login($request->validated());
 
         return $channel->errors()->any() ?
-            $this->successResponse($channel) :
-            $this->failedResponse($channel);
+            $this->failedResponse($channel) :
+            $this->successResponse($channel);
 
     }
 

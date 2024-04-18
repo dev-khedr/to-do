@@ -4,7 +4,7 @@ namespace App\Core\Traits\Models;
 
 use Illuminate\Contracts\Auth\Authenticatable as IlluminateAuthenticatable;
 
-trait CanAuthenticate
+trait HasAuthenticatable
 {
     public function findForWorker(string $column, mixed $value): ?IlluminateAuthenticatable
     {
