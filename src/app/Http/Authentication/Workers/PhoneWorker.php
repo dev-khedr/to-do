@@ -7,5 +7,5 @@ use Raid\Core\Authentication\Workers\Worker;
 
 class PhoneWorker extends Worker implements WorkerInterface
 {
-    public const COLUMN = 'phone';
+    public const ATTRIBUTE = 'phone';
 }
