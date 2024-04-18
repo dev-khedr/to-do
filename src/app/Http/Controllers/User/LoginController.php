@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Authentication\Channels\EmailTwoFactorChannel;
-use App\Http\Authentication\Steps\PhoneTwoFactorStep;
+use App\Http\Authentication\Channels\TwoFactorEmailChannel;
+use App\Http\Authentication\Channels\TwoFactorPhoneChannel;
+use App\Http\Authentication\Steps\TwoFactorPhoneStep;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Requests\User as Requests;
 use App\Http\Transformers\User\UserTransformer as Transformer;
@@ -25,23 +26,23 @@ class LoginController extends AuthenticationController
         );
     }
 
-    public function emailTwoFactorLogin(Requests\LoginRequest $request): JsonResponse
+    public function loginWithTwoFactorEmail(Requests\LoginRequest $request): JsonResponse
     {
         return $this->authenticationResponse(
             $this->getService()->login(
                 $request->validated(),
-                EmailTwoFactorChannel::getName(),
+                TwoFactorEmailChannel::getName(),
             ),
             new Transformer,
         );
     }
 
-    public function phoneTwoFactorLogin(Requests\LoginRequest $request): JsonResponse
+    public function loginWithTwoFactorPhone(Requests\LoginRequest $request): JsonResponse
     {
         return $this->authenticationResponse(
             $this->getService()->login(
                 $request->validated(),
-                PhoneTwoFactorStep::getName(),
+                TwoFactorPhoneChannel::getName(),
             ),
             new Transformer,
         );

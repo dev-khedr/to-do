@@ -3,10 +3,12 @@
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 
-// auth routes
-Route::prefix('/v1/users')
+// login routes
+Route::prefix('/v1/users/login')
     ->group(function () {
-        Route::post('/login', [User\LoginController::class, 'login']);
+        Route::post('/', [User\LoginController::class, 'login']);
+        Route::post('/two-factor/email', [User\LoginController::class, 'loginWithTwoFactorEmail']);
+        Route::post('/two-factor/phone', [User\LoginController::class, 'loginWithTwoFactorPhone']);
     });
 
 // profile routes

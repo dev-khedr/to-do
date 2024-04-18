@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Authentication\Channels\EmailTwoFactorChannel;
-use App\Http\Authentication\Channels\PhoneTwoFactorChannel;
+use App\Http\Authentication\Channels\TwoFactorEmailChannel;
+use App\Http\Authentication\Channels\TwoFactorPhoneChannel;
 use App\Http\Authentication\Channels\SystemChannel;
-use App\Http\Authentication\Steps\EmailTwoFactorStep;
-use App\Http\Authentication\Steps\PhoneTwoFactorStep;
+use App\Http\Authentication\Steps\TwoFactorEmailStep;
+use App\Http\Authentication\Steps\TwoFactorPhoneStep;
 use App\Http\Authentication\Workers\PhoneWorker;
 use Raid\Core\Authentication\Rules\MatchingPasswordRule;
 use Raid\Core\Authentication\Workers\EmailWorker;
@@ -20,10 +20,10 @@ return [
             EmailWorker::class,
             PhoneWorker::class,
         ],
-        EmailTwoFactorChannel::class => [
+        TwoFactorEmailChannel::class => [
             EmailWorker::class,
         ],
-        PhoneTwoFactorChannel::class => [
+        TwoFactorPhoneChannel::class => [
             PhoneWorker::class,
         ],
     ],
@@ -32,20 +32,20 @@ return [
         SystemChannel::class => [
             MatchingPasswordRule::class,
         ],
-        EmailTwoFactorChannel::class => [
+        TwoFactorEmailChannel::class => [
             MatchingPasswordRule::class,
         ],
-        PhoneTwoFactorChannel::class => [
+        TwoFactorPhoneChannel::class => [
             MatchingPasswordRule::class,
         ],
     ],
 
     'channel_steps' => [
-        EmailTwoFactorChannel::class => [
-            EmailTwoFactorStep::class,
+        TwoFactorEmailChannel::class => [
+            TwoFactorEmailStep::class,
         ],
-        PhoneTwoFactorChannel::class => [
-            PhoneTwoFactorStep::class,
+        TwoFactorPhoneChannel::class => [
+            TwoFactorPhoneStep::class,
         ],
     ],
 
