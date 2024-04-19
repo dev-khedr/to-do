@@ -10,9 +10,6 @@ use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
 use Raid\Core\Authentication\Channels\Contracts\Concerns\ShouldRunRules;
 use Raid\Core\Authentication\Channels\Contracts\Concerns\ShouldRunSteps;
 use Raid\Core\Authentication\Rules\MatchingPasswordRule;
-use Raid\Core\Authentication\Traits\Channels\HasRules;
-use Raid\Core\Authentication\Traits\Channels\HasSteps;
-use Raid\Core\Authentication\Workers\EmailWorker;
 
 class TwoFactorPhoneChannel extends Channel implements ChannelInterface, ShouldRunRules, ShouldRunSteps
 {
