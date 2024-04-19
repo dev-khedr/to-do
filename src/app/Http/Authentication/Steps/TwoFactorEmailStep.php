@@ -6,17 +6,20 @@ use App\Core\Integrations\Mail\MailService;
 use App\Enums\VerificationType;
 use App\Mail\TwoFactorMail;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
+use Raid\Core\Authentication\Steps\Contracts\QueueStepInterface;
 use Raid\Core\Authentication\Steps\Contracts\StepInterface;
+use Raid\Core\Authentication\Steps\QueueStep;
+use Raid\Core\Authentication\Traits\Steps\HasQueue;
 
-readonly class TwoFactorEmailStep implements StepInterface
+class TwoFactorEmailStep extends QueueStep implements QueueStepInterface
 {
     public function __construct(
-        private MailService $mailService,
+        private readonly MailService $mailService,
     ) {
 
     }
 
-    public function run(ChannelInterface $channel): void
+    public function handle(ChannelInterface $channel): void
     {
         $authenticatable = $channel->getAuthenticatable();
 

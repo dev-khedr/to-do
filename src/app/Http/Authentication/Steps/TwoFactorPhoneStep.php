@@ -5,17 +5,19 @@ namespace App\Http\Authentication\Steps;
 use App\Core\Integrations\Sms\SmsService;
 use App\Enums\VerificationType;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
+use Raid\Core\Authentication\Steps\Contracts\QueueStepInterface;
 use Raid\Core\Authentication\Steps\Contracts\StepInterface;
+use Raid\Core\Authentication\Steps\QueueStep;
 
-readonly class TwoFactorPhoneStep implements StepInterface
+class TwoFactorPhoneStep extends QueueStep implements QueueStepInterface
 {
     public function __construct(
-        private SmsService $smsService,
+        private readonly SmsService $smsService,
     ) {
 
     }
 
-    public function run(ChannelInterface $channel): void
+    public function handle(ChannelInterface $channel): void
     {
         $authenticatable = $channel->getAuthenticatable();
 

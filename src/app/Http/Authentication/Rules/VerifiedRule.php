@@ -7,7 +7,7 @@ use Raid\Core\Authentication\Rules\Contracts\RuleInterface;
 
 class VerifiedRule implements RuleInterface
 {
-    public function run(ChannelInterface $channel): bool
+    public function handle(ChannelInterface $channel): bool
     {
         return $channel->getAuthenticatable()->isVerified();
     }
