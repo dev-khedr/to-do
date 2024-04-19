@@ -6,7 +6,6 @@ use App\Core\Integrations\Sms\SmsService;
 use App\Enums\VerificationType;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
 use Raid\Core\Authentication\Steps\Contracts\QueueStepInterface;
-use Raid\Core\Authentication\Steps\Contracts\StepInterface;
 use Raid\Core\Authentication\Steps\QueueStep;
 
 class TwoFactorPhoneStep extends QueueStep implements QueueStepInterface

@@ -7,9 +7,7 @@ use App\Enums\VerificationType;
 use App\Mail\TwoFactorMail;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
 use Raid\Core\Authentication\Steps\Contracts\QueueStepInterface;
-use Raid\Core\Authentication\Steps\Contracts\StepInterface;
 use Raid\Core\Authentication\Steps\QueueStep;
-use Raid\Core\Authentication\Traits\Steps\HasQueue;
 
 class TwoFactorEmailStep extends QueueStep implements QueueStepInterface
 {
