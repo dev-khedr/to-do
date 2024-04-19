@@ -29,14 +29,14 @@ class VerifyTwoFactorRequest extends FormRequest
     public function withValidator(Validator $validator): void
     {
         $validator->after(function () use ($validator) {
-            $this->validateVerificationExists($validator);
+            $this->validateVerification($validator);
         });
     }
 
     /**
      * @throws ValidationException
      */
-    private function validateVerificationExists(Validator $validator): void
+    private function validateVerification(Validator $validator): void
     {
         $verification = $this->findVerification();
 
@@ -52,12 +52,11 @@ class VerifyTwoFactorRequest extends FormRequest
 
     private function findVerification(): ?Verification
     {
-        return Verification::filter([
-            'verifiableId' => $this->input('verifiableId'),
-            'code' => $this->input('code'),
-            'type' => $this->getType($this->route('type')),
-            //            'expiredAt' => now()->subMinutes(5),
-        ])->first();
+        return Verification::valid(
+            $this->input('verifiableId'),
+            $this->input('code'),
+            $this->getType($this->route('type')),
+        )->first();
     }
 
     private function getType(string $type): string
