@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('verifications', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('verifiable_type');
             $table->uuid('verifiable_id');
             $table->enum('type', [

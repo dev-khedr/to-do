@@ -26,7 +26,7 @@ class TwoFactorPhoneStep extends QueueStep implements QueueStepInterface
 
         $this->send(
             $authenticatable->getAttribute('phone'),
-            $verification->getSmsMessage(),
+            $verification->getPhoneMessage(),
         );
     }
 

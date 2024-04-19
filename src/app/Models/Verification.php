@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Verification extends Model
 {
     use Filterable;
-    use HasUuids;
 
     const UPDATED_AT = null;
 
@@ -30,9 +29,9 @@ class Verification extends Model
         ]);
     }
 
-    public function getSmsMessage(): string
+    public function getPhoneMessage(): string
     {
-        return __('message.verification_sms_message', [
+        return __('message.verification_phone_message', [
             'code' => $this->attributes['code'],
         ]);
     }
