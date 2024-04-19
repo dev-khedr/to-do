@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Authentication\Authenticators\UserAuthenticator;
 use App\Http\Authentication\Channels\SystemChannel;
 use App\Http\Authentication\Channels\TwoFactorEmailChannel;
 use App\Http\Authentication\Channels\TwoFactorPhoneChannel;
@@ -14,7 +15,11 @@ return [
 
     'default_channel' => SystemChannel::class,
 
-    'authenticator_channels' => [],
+    'authenticator_channels' => [
+        UserAuthenticator::class => [
+            SystemChannel::class,
+        ],
+    ],
 
     'channel_workers' => [
         SystemChannel::class => [
