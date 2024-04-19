@@ -9,7 +9,7 @@
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "raid/authentication": "*",
+        "raid/authentication": "dev-main",
         "spatie/laravel-fractal": "^6.2",
         "tucker-eric/eloquentfilter": "^3.3"
     },
@@ -66,14 +66,5 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": false,
-    "repositories": [
-        {
-            "type": "path",
-            "url": "app-pkg/*",
-            "options": {
-                "symlink": true
-            }
-        }
-    ]
+    "prefer-stable": false
 }

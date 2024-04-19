@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "959c7742e6441d05ca37e461f42c3d86",
+    "content-hash": "7e632f6133041fcf0fcd7c3ca4721b37",
     "packages": [
         {
             "name": "brick/math",
@@ -3062,11 +3062,17 @@
         },
         {
             "name": "raid/authentication",
-            "version": "1.0.0",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MohamedKhedr700/authentication.git",
+                "reference": "7f37f96d49f8faf12e1c69d668dc9d588672a8ae"
+            },
             "dist": {
-                "type": "path",
-                "url": "app-pkg/authentication",
-                "reference": "4ee04c327f98622a05527de0c9559ab341753da0"
+                "type": "zip",
+                "url": "https://api.github.com/repos/MohamedKhedr700/authentication/zipball/7f37f96d49f8faf12e1c69d668dc9d588672a8ae",
+                "reference": "7f37f96d49f8faf12e1c69d668dc9d588672a8ae",
+                "shasum": ""
             },
             "require": {
                 "laravel/sanctum": "^4.0",
@@ -3075,6 +3081,7 @@
             "require-dev": {
                 "laravel/pint": "^1.10"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3088,11 +3095,7 @@
                     "Raid\\Core\\Authentication\\": "src"
                 }
             },
-            "scripts": {
-                "pint": [
-                    "./vendor/bin/pint --config pint.json "
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3104,15 +3107,16 @@
             ],
             "description": "Raid Authentication Package",
             "keywords": [
+                "Authentication",
                 "auth",
-                "authentication",
                 "laravel",
                 "raid"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/MohamedKhedr700/authentication/issues",
+                "source": "https://github.com/MohamedKhedr700/authentication/tree/main"
+            },
+            "time": "2024-04-19T13:15:53+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
