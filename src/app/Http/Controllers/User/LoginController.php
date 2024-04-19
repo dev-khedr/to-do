@@ -2,31 +2,48 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Authentication\Channels\TwoFactorEmailChannel;
+use App\Http\Authentication\Channels\TwoFactorPhoneChannel;
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Requests\User as Requests;
 use App\Http\Transformers\User\UserTransformer as Transformer;
 use App\Services\UserService as Service;
 use Illuminate\Http\JsonResponse;
 
-class LoginController extends Controller
+class LoginController extends AuthenticationController
 {
     public function __construct(Service $service)
     {
-        config(['auth.defaults.guard' => 'user']);
-
         $this->setService($service);
     }
 
     public function login(Requests\LoginRequest $request): JsonResponse
     {
-        $token = $this->service()->login($request->validated());
+        return $this->authenticationResponse(
+            $this->getService()->attempt($request->validated()),
+            new Transformer,
+        );
+    }
 
-        return $this->success([
-            'token' => $token,
-            'resource' => fractal_data(
-                auth()->user(),
-                new Transformer,
+    public function loginWithTwoFactorEmail(Requests\LoginRequest $request): JsonResponse
+    {
+        return $this->authenticationResponse(
+            $this->getService()->attempt(
+                $request->validated(),
+                TwoFactorEmailChannel::getName(),
             ),
-        ]);
+            new Transformer,
+        );
+    }
+
+    public function loginWithTwoFactorPhone(Requests\LoginRequest $request): JsonResponse
+    {
+        return $this->authenticationResponse(
+            $this->getService()->attempt(
+                $request->validated(),
+                TwoFactorPhoneChannel::getName(),
+            ),
+            new Transformer,
+        );
     }
 }

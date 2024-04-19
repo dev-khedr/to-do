@@ -19,7 +19,7 @@ class ProfileController extends Controller
     {
         return $this->success([
             'resource' => fractal_data(
-                $this->service()->getProfile(),
+                $this->getService()->getProfile(),
                 new Transformer,
             ),
         ]);
@@ -27,21 +27,21 @@ class ProfileController extends Controller
 
     public function update(Requests\UpdateProfileRequest $request): JsonResponse
     {
-        $this->service()->updateProfile($request->validated());
+        $this->getService()->updateProfile($request->validated());
 
         return $this->success(message: __('message.profile_updated'));
     }
 
     public function updatePassword(Requests\UpdateProfilePasswordRequest $request): JsonResponse
     {
-        $this->service()->updatePassword($request->validated());
+        $this->getService()->updatePassword($request->validated());
 
         return $this->success(message: __('message.password_updated'));
     }
 
     public function logout(): JsonResponse
     {
-        $this->service()->logout();
+        $this->getService()->logout();
 
         return $this->success(message: __('auth.logged_out'));
     }

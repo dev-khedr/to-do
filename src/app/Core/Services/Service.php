@@ -12,38 +12,38 @@ abstract class Service implements ServiceInterface
 {
     protected RepositoryInterface $repository;
 
-    public function setRepository(RepositoryInterface $repository): void
+    protected function setRepository(RepositoryInterface $repository): void
     {
         $this->repository = $repository;
     }
 
-    protected function repository(): RepositoryInterface
+    protected function getRepository(): RepositoryInterface
     {
         return $this->repository;
     }
 
     public function create(array $data): Model
     {
-        return $this->repository()->create($data);
+        return $this->getRepository()->create($data);
     }
 
     public function list(array $filters, array $columns = ['*'], array $relations = []): Collection|LengthAwarePaginator
     {
-        return $this->repository()->list($filters, $columns, $relations);
+        return $this->getRepository()->list($filters, $columns, $relations);
     }
 
     public function find(string|Model $id): Model
     {
-        return $this->repository()->findOrFail($id);
+        return $this->getRepository()->findOrFail($id);
     }
 
     public function update(string|Model $id, array $data): bool
     {
-        return $this->repository()->update($id, $data);
+        return $this->getRepository()->update($id, $data);
     }
 
     public function delete(string|Model $id): bool
     {
-        return $this->repository()->delete($id);
+        return $this->getRepository()->delete($id);
     }
 }
