@@ -10,9 +10,15 @@ class MatchingPasswordRule implements RuleInterface
 {
     public function handle(ChannelInterface $channel): bool
     {
-        return Hash::check(
+        $valid = Hash::check(
             $channel->getCredentials('password'),
             $channel->getAuthenticatable()->getAuthPassword(),
         );
+
+        if (! $valid) {
+            $channel->failed();
+        }
+
+        return $valid;
     }
 }

@@ -3066,12 +3066,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MohamedKhedr700/authentication.git",
-                "reference": "0f989571b1c9cddfa7bfd4d2672e76c10ac496fa"
+                "reference": "8d1340170cd6a2fc21a4ef105327023f391a0a21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MohamedKhedr700/authentication/zipball/0f989571b1c9cddfa7bfd4d2672e76c10ac496fa",
-                "reference": "0f989571b1c9cddfa7bfd4d2672e76c10ac496fa",
+                "url": "https://api.github.com/repos/MohamedKhedr700/authentication/zipball/8d1340170cd6a2fc21a4ef105327023f391a0a21",
+                "reference": "8d1340170cd6a2fc21a4ef105327023f391a0a21",
                 "shasum": ""
             },
             "require": {
@@ -3116,7 +3116,7 @@
                 "issues": "https://github.com/MohamedKhedr700/authentication/issues",
                 "source": "https://github.com/MohamedKhedr700/authentication/tree/main"
             },
-            "time": "2024-04-19T17:49:52+00:00"
+            "time": "2024-04-20T00:09:06+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
