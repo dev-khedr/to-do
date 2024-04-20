@@ -9,6 +9,12 @@ class VerifiedRule implements RuleInterface
 {
     public function handle(ChannelInterface $channel): bool
     {
-        return $channel->getAuthenticatable()->isVerified();
+        $valid = $channel->getAuthenticatable()->isVerified();
+
+        if (! $valid) {
+            $channel->fail(message: __('auth.unverified'));
+        }
+
+        return $valid;
     }
 }
