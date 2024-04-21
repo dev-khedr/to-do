@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Raid\Core\Authentication\Authenticators\Contracts\AuthenticatorInterface;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
+use Raid\Core\Authentication\Tokens\Contracts\TokenInterface;
 
 abstract class AuthenticationService extends Service implements ServiceInterface
 {
@@ -25,17 +26,17 @@ abstract class AuthenticationService extends Service implements ServiceInterface
     /**
      * @throws Exception
      */
-    public function attempt(array $data, ?string $channel = null): ChannelInterface
+    public function attempt(array $data, ?string $channel = null, ?TokenInterface $token = null): ChannelInterface
     {
-        return $this->getAuthenticator()->attempt($data, $channel);
+        return $this->getAuthenticator()->attempt($data, $channel, $token);
     }
 
     /**
      * @throws Exception
      */
-    public function login(Authenticatable $authenticatable, ?string $channel = null): ChannelInterface
+    public function login(Authenticatable $authenticatable, ?string $channel = null, ?TokenInterface $token = null): ChannelInterface
     {
-        return $this->getAuthenticator()->login($authenticatable, $channel);
+        return $this->getAuthenticator()->login($authenticatable, $channel, $token);
     }
 
     public function getProfile(): Authenticatable
