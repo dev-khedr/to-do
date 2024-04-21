@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Observers\VerificationObserver;
 use EloquentFilter\Filterable;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+
+#[ObservedBy(VerificationObserver::class)]
 
 class Verification extends Model
 {

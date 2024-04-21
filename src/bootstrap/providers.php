@@ -1,19 +1,18 @@
 <?php
 
 return [
-    // domain providers
+    // Domain
     App\Providers\Domain\AdminServiceProvider::class,
     App\Providers\Domain\TaskServiceProvider::class,
     App\Providers\Domain\TaskListServiceProvider::class,
     App\Providers\Domain\UserServiceProvider::class,
 
-    // infrastructure providers
+    // Application
     App\Providers\AppServiceProvider::class,
+    App\Providers\AuthenticationServiceProvider::class,
     App\Providers\HelperServiceProvider::class,
-    App\Providers\ObserverServiceProvider::class,
 
-    // package providers
+    // Packages
     EloquentFilter\ServiceProvider::class,
     Lanin\Laravel\ApiDebugger\ServiceProvider::class,
-    Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 ];

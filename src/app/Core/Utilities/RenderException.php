@@ -2,9 +2,10 @@
 
 namespace App\Core\Utilities;
 
-use App\Core\Traits\Responseable as ApiResponseTrait;
+use App\Core\Traits\Responseable;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -12,25 +13,35 @@ use Throwable;
 
 class RenderException
 {
-    use ApiResponseTrait;
+    use Responseable;
 
     public static function new(): static
     {
         return new static();
     }
 
-    public function render(Throwable $e, Request $request)
+    public function render(Throwable $e, Request $request): ?JsonResponse
     {
-        switch ($e) {
-            case $e instanceof ModelNotFoundException:
-            case $e instanceof NotFoundHttpException:
-                return $this->notFound(__('message.not_found'));
+        return match (true) {
+            $e instanceof ModelNotFoundException, $e instanceof NotFoundHttpException => $this->renderNotFound($e, $request),
+            $e instanceof ValidationException => $this->renderUnprocessable($e, $request),
+            $e instanceof AuthenticationException => $this->renderUnauthorized($e, $request),
+            default => null,
+        };
+    }
 
-            case $e instanceof ValidationException:
-                return $this->unprocessable($e->errors(), $e->getMessage());
+    private function renderNotFound(ModelNotFoundException|NotFoundHttpException $e, Request $request): JsonResponse
+    {
+        return $this->notFound(__('message.not_found'));
+    }
 
-            case $e instanceof AuthenticationException:
-                return $this->unauthorized($e->getMessage());
-        }
+    private function renderUnprocessable(ValidationException $e, Request $request): JsonResponse
+    {
+        return $this->unprocessable($e->errors(), $e->getMessage());
+    }
+
+    private function renderUnauthorized(AuthenticationException $e, Request $request): JsonResponse
+    {
+        return $this->unauthorized($e->getMessage());
     }
 }
