@@ -2,8 +2,8 @@
 
 namespace App\Http\Authentication\Channels;
 
-use App\Http\Authentication\Rules\VerifiedRule;
 use App\Http\Authentication\Rules\MatchingPasswordRule;
+use App\Http\Authentication\Rules\VerifiedRule;
 use App\Http\Authentication\Steps\TwoFactorEmailStep;
 use Raid\Core\Authentication\Channels\Channel;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;

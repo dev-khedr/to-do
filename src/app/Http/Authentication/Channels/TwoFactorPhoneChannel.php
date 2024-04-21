@@ -2,8 +2,8 @@
 
 namespace App\Http\Authentication\Channels;
 
-use App\Http\Authentication\Rules\VerifiedRule;
 use App\Http\Authentication\Rules\MatchingPasswordRule;
+use App\Http\Authentication\Rules\VerifiedRule;
 use App\Http\Authentication\Steps\TwoFactorPhoneStep;
 use App\Http\Authentication\Workers\PhoneWorker;
 use Raid\Core\Authentication\Channels\Channel;
