@@ -38,6 +38,9 @@ class TwoFactorEmailStep implements StepInterface, ShouldRunQueue
 
     private function send(string $email, string $name, int $code): void
     {
-        $this->mailService->send($email, new TwoFactorMail($name, $code));
+        $this->mailService->send(
+            $email,
+            new TwoFactorMail($name, $code),
+        );
     }
 }

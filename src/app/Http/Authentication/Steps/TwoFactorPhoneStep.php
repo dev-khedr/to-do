@@ -35,6 +35,9 @@ class TwoFactorPhoneStep implements StepInterface, ShouldQueueStep
 
     private function send(string $phone, string $message): void
     {
-        $this->smsService->send($phone, $message);
+        $this->smsService->send(
+            $phone,
+            $message,
+        );
     }
 }
