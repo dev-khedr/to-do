@@ -5,11 +5,11 @@ namespace App\Http\Authentication\Steps;
 use App\Core\Integrations\Sms\SmsService;
 use App\Enums\VerificationType;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
-use Raid\Core\Authentication\Steps\Contracts\ShouldQueueStep;
+use Raid\Core\Authentication\Steps\Contracts\ShouldRunQueue;
 use Raid\Core\Authentication\Steps\Contracts\StepInterface;
 use Raid\Core\Authentication\Traits\Steps\HasQueue;
 
-class TwoFactorPhoneStep implements StepInterface, ShouldQueueStep
+class TwoFactorPhoneStep implements StepInterface, ShouldRunQueue
 {
     use HasQueue;
 
