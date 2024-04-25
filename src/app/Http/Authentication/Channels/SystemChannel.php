@@ -7,7 +7,7 @@ use App\Http\Authentication\Rules\VerifiedRule;
 use App\Http\Authentication\Workers\PhoneWorker;
 use Raid\Core\Authentication\Channels\Channel;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
-use Raid\Core\Authentication\Channels\Contracts\Concerns\ShouldRunRules;
+use Raid\Core\Authentication\Channels\Contracts\ShouldRunRules;
 use Raid\Core\Authentication\Workers\EmailWorker;
 
 class SystemChannel extends Channel implements ChannelInterface, ShouldRunRules

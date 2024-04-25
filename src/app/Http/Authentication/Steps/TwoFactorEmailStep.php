@@ -5,12 +5,16 @@ namespace App\Http\Authentication\Steps;
 use App\Core\Integrations\Mail\MailService;
 use App\Enums\VerificationType;
 use App\Mail\TwoFactorMail;
+use Illuminate\Foundation\Bus\PendingDispatch;
 use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
-use Raid\Core\Authentication\Steps\Contracts\QueueStepInterface;
-use Raid\Core\Authentication\Steps\QueueStep;
+use Raid\Core\Authentication\Steps\Contracts\ShouldRunQueue;
+use Raid\Core\Authentication\Steps\Contracts\StepInterface;
+use Raid\Core\Authentication\Traits\Steps\HasQueue;
 
-class TwoFactorEmailStep extends QueueStep implements QueueStepInterface
+class TwoFactorEmailStep implements StepInterface, ShouldRunQueue
 {
+    use HasQueue;
+
     public function __construct(
         private readonly MailService $mailService,
     ) {
