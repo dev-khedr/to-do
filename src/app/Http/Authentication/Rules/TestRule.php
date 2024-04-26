@@ -2,8 +2,8 @@
 
 namespace App\Http\Authentication\Rules;
 
-use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
-use Raid\Core\Authentication\Rules\Contracts\RuleInterface;
+use Raid\Guardian\Channels\Contracts\ChannelInterface;
+use Raid\Guardian\Rules\Contracts\RuleInterface;
 
 class TestRule implements RuleInterface
 {

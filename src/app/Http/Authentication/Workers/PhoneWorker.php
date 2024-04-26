@@ -2,8 +2,8 @@
 
 namespace App\Http\Authentication\Workers;
 
-use Raid\Core\Authentication\Workers\Contracts\WorkerInterface;
-use Raid\Core\Authentication\Workers\Worker;
+use Raid\Guardian\Workers\Contracts\WorkerInterface;
+use Raid\Guardian\Workers\Worker;
 
 class PhoneWorker extends Worker implements WorkerInterface
 {

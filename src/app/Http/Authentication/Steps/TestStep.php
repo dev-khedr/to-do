@@ -2,8 +2,8 @@
 
 namespace App\Http\Authentication\Steps;
 
-use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
-use Raid\Core\Authentication\Steps\Contracts\StepInterface;
+use Raid\Guardian\Channels\Contracts\ChannelInterface;
+use Raid\Guardian\Steps\Contracts\StepInterface;
 
 class TestStep implements StepInterface
 {

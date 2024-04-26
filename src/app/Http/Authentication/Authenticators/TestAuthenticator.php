@@ -2,8 +2,8 @@
 
 namespace App\Http\Authentication\Authenticators;
 
-use Raid\Core\Authentication\Authenticators\Authenticator;
-use Raid\Core\Authentication\Authenticators\Contracts\AuthenticatorInterface;
+use Raid\Guardian\Authenticators\Authenticator;
+use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
 
 class TestAuthenticator extends Authenticator implements AuthenticatorInterface
 {

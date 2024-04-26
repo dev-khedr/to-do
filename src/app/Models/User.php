@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as IlluminateUser;
 use Laravel\Sanctum\HasApiTokens;
-use Raid\Core\Authentication\Authenticates\Contracts\Authenticates;
+use Raid\Guardian\Authenticates\Contracts\Authenticates;
 
 class User extends IlluminateUser implements Authenticates
 {

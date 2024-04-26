@@ -5,9 +5,9 @@ namespace App\Core\Services;
 use App\Core\Services\Contracts\ServiceInterface;
 use Exception;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Raid\Core\Authentication\Authenticators\Contracts\AuthenticatorInterface;
-use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
-use Raid\Core\Authentication\Tokens\Contracts\TokenInterface;
+use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
+use Raid\Guardian\Channels\Contracts\ChannelInterface;
+use Raid\Guardian\Tokens\Contracts\TokenInterface;
 
 abstract class AuthenticationService extends Service implements ServiceInterface
 {

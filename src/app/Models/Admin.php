@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
-use Raid\Core\Authentication\Authenticates\Contracts\Authenticates;
+use Raid\Guardian\Authenticates\Contracts\Authenticates;
 
 class Admin extends Authenticatable implements Authenticates
 {

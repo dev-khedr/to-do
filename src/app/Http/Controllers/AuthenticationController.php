@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use League\Fractal\TransformerAbstract;
-use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
+use Raid\Guardian\Channels\Contracts\ChannelInterface;
 
 class AuthenticationController extends Controller
 {

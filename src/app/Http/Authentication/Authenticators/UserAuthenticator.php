@@ -6,8 +6,8 @@ use App\Http\Authentication\Channels\SystemChannel;
 use App\Http\Authentication\Channels\TwoFactorEmailChannel;
 use App\Http\Authentication\Steps\TwoFactorPhoneStep;
 use App\Models\User;
-use Raid\Core\Authentication\Authenticators\Authenticator;
-use Raid\Core\Authentication\Authenticators\Contracts\AuthenticatorInterface;
+use Raid\Guardian\Authenticators\Authenticator;
+use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
 
 class UserAuthenticator extends Authenticator implements AuthenticatorInterface
 {

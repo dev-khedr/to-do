@@ -5,10 +5,10 @@ namespace App\Http\Authentication\Steps;
 use App\Core\Integrations\Mail\MailService;
 use App\Enums\VerificationType;
 use App\Mail\TwoFactorMail;
-use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
-use Raid\Core\Authentication\Steps\Contracts\ShouldRunQueue;
-use Raid\Core\Authentication\Steps\Contracts\StepInterface;
-use Raid\Core\Authentication\Traits\Steps\HasQueue;
+use Raid\Guardian\Channels\Contracts\ChannelInterface;
+use Raid\Guardian\Steps\Contracts\ShouldRunQueue;
+use Raid\Guardian\Steps\Contracts\StepInterface;
+use Raid\Guardian\Traits\Steps\HasQueue;
 
 class TwoFactorEmailStep implements ShouldRunQueue, StepInterface
 {

@@ -3,8 +3,8 @@
 namespace App\Http\Authentication\Rules;
 
 use Illuminate\Support\Facades\Hash;
-use Raid\Core\Authentication\Channels\Contracts\ChannelInterface;
-use Raid\Core\Authentication\Rules\Contracts\RuleInterface;
+use Raid\Guardian\Channels\Contracts\ChannelInterface;
+use Raid\Guardian\Rules\Contracts\RuleInterface;
 
 class MatchingPasswordRule implements RuleInterface
 {
