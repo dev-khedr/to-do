@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as IlluminateUser;
 use Laravel\Sanctum\HasApiTokens;
 use Raid\Core\Authentication\Authenticates\Contracts\Authenticates;
 
-class User extends Authenticatable implements Authenticates
+class User extends IlluminateUser implements Authenticates
 {
     use Filterable;
     use HasApiTokens;
