@@ -9,7 +9,7 @@ use Raid\Core\Authentication\Steps\Contracts\ShouldRunQueue;
 use Raid\Core\Authentication\Steps\Contracts\StepInterface;
 use Raid\Core\Authentication\Traits\Steps\HasQueue;
 
-class TwoFactorPhoneStep implements StepInterface, ShouldRunQueue
+class TwoFactorPhoneStep implements ShouldRunQueue, StepInterface
 {
     use HasQueue;
 

@@ -13,7 +13,7 @@ class UserAuthenticator extends Authenticator implements AuthenticatorInterface
 {
     public const NAME = 'user';
 
-    protected string $authenticatable = User::class;
+    protected string $authenticates = User::class;
 
     protected array $channels = [
         SystemChannel::class,

@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
-use Raid\Core\Authentication\Authenticatable\Contracts\AuthenticatableInterface;
+use Raid\Core\Authentication\Authenticates\Contracts\Authenticates;
 
-class User extends Authenticatable implements AuthenticatableInterface
+class User extends Authenticatable implements Authenticates
 {
     use Filterable;
     use HasApiTokens;
