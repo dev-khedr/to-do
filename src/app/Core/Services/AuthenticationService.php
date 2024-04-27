@@ -5,6 +5,7 @@ namespace App\Core\Services;
 use App\Core\Services\Contracts\ServiceInterface;
 use Exception;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
 use Raid\Guardian\Channels\Contracts\ChannelInterface;
 use Raid\Guardian\Tokens\Contracts\TokenInterface;
