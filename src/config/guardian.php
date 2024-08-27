@@ -1,17 +1,20 @@
 <?php
 
-use App\Http\Authentication\Channels\SystemChannel;
+use App\Http\Authentication\Authenticators\SystemAuthenticator;
+use Raid\Guardian\Authenticators\DefaultAuthenticator;
+use Raid\Guardian\Norms\MatchingPasswordNorm;
+use Raid\Guardian\Matchers\EmailMatcher;
 
 return [
 
-    'default_channel' => SystemChannel::class,
+    'default_authenticator' => SystemAuthenticator::class,
 
-    'authenticator_channels' => [],
+    'guardian_authenticators' => [],
 
-    'channel_workers' => [],
+    'authenticator_matchers' => [],
 
-    'channel_rules' => [],
+    'authenticator_norms' => [],
 
-    'channel_steps' => [],
+    'authenticator_sequences' => [],
 
 ];

@@ -4,14 +4,14 @@ namespace App\Services;
 
 use App\Core\Services\AuthenticationService;
 use App\Core\Services\Contracts\ServiceInterface;
-use App\Http\Authentication\Authenticators\UserAuthenticator;
+use App\Http\Authentication\Guardians\UserGuardian;
 use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserService extends AuthenticationService implements ServiceInterface
 {
-    public function __construct(UserRepositoryInterface $repository, UserAuthenticator $authenticator)
+    public function __construct(UserRepositoryInterface $repository, UserGuardian $guardian)
     {
         $this->setRepository($repository);
-        $this->setAuthenticator($authenticator);
+        $this->setGuardian($guardian);
     }
 }

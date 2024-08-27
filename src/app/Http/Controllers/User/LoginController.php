@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Authentication\Channels\TwoFactorEmailChannel;
-use App\Http\Authentication\Channels\TwoFactorPhoneChannel;
+use App\Http\Authentication\Authenticators\TwoFactorEmailAuthenticator;
+use App\Http\Authentication\Authenticators\TwoFactorPhoneAuthenticator;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Requests\User as Requests;
 use App\Http\Transformers\User\UserTransformer as Transformer;
@@ -30,7 +30,7 @@ class LoginController extends AuthenticationController
         return $this->authenticationResponse(
             $this->getService()->attempt(
                 $request->validated(),
-                TwoFactorEmailChannel::getName(),
+                TwoFactorEmailAuthenticator::getName(),
             ),
             new Transformer,
         );
@@ -41,7 +41,7 @@ class LoginController extends AuthenticationController
         return $this->authenticationResponse(
             $this->getService()->attempt(
                 $request->validated(),
-                TwoFactorPhoneChannel::getName(),
+                TwoFactorPhoneAuthenticator::getName(),
             ),
             new Transformer,
         );

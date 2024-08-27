@@ -1,5 +1,3 @@
-version: "3"
-
 services:
     php:
         container_name: '${DOCKER_PREFIX_NAME}-php'
@@ -58,6 +56,31 @@ services:
         ports:
             - "${DOCKER_MAILHOG_PORT:-1025}:1025"
             - "${DOCKER_MAILHOG_DASHBOARD_PORT:-8025}:8025"
+        networks:
+            - local
+    composer:
+        container_name: '${DOCKER_PREFIX_NAME}-composer'
+        image: composer:latest
+        working_dir: /var/www/html
+        volumes:
+            - ./src:/var/www/html
+        depends_on:
+            - php
+        networks:
+            - local
+    artisan:
+        container_name: '${DOCKER_PREFIX_NAME}-artisan'
+        build:
+            context: ./compose/8.2
+            dockerfile: Dockerfile
+            args:
+                - 'UID=${UID:-1000}'
+                - 'GID=${GID:-1000}'
+        entrypoint: [ '/var/www/html/artisan' ]
+        volumes:
+            - ./src:/var/www/html
+        depends_on:
+            - mysql
         networks:
             - local
 

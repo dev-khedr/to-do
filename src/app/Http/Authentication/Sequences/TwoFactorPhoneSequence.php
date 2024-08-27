@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Authentication\Steps;
+namespace App\Http\Authentication\Sequences;
 
 use App\Core\Integrations\Sms\SmsService;
 use App\Enums\VerificationType;
-use Raid\Guardian\Channels\Contracts\ChannelInterface;
-use Raid\Guardian\Steps\Contracts\ShouldRunQueue;
-use Raid\Guardian\Steps\Contracts\StepInterface;
-use Raid\Guardian\Traits\Steps\HasQueue;
+use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
+use Raid\Guardian\Sequences\Contracts\QueueSequenceInterface;
+use Raid\Guardian\Traits\Sequences\HasQueue;
 
-class TwoFactorPhoneStep implements ShouldRunQueue, StepInterface
+class TwoFactorPhoneSequence implements QueueSequenceInterface
 {
     use HasQueue;
 
@@ -19,9 +18,9 @@ class TwoFactorPhoneStep implements ShouldRunQueue, StepInterface
 
     }
 
-    public function handle(ChannelInterface $channel): void
+    public function handle(AuthenticatorInterface $authenticator): void
     {
-        $authenticatable = $channel->getAuthenticatable();
+        $authenticatable = $authenticator->getAuthenticatable();
 
         $verification = $authenticatable->verification()->create([
             'type' => VerificationType::TWO_FACTOR_PHONE,

@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as IlluminateUser;
 use Laravel\Sanctum\HasApiTokens;
-use Raid\Guardian\Authenticates\Contracts\Authenticates;
+use Raid\Guardian\Authenticatable\Contracts\AuthenticatableInterface;
 
-class User extends IlluminateUser implements Authenticates
+class User extends IlluminateUser implements AuthenticatableInterface
 {
     use Filterable;
     use HasApiTokens;
@@ -29,7 +29,7 @@ class User extends IlluminateUser implements Authenticates
     ];
 
     protected $hidden = [
-        'password',
+//        'password',
     ];
 
     protected function casts(): array

@@ -4,34 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use League\Fractal\TransformerAbstract;
+use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
 use Raid\Guardian\Channels\Contracts\ChannelInterface;
 
 class AuthenticationController extends Controller
 {
-    protected function authenticationResponse(ChannelInterface $channel, TransformerAbstract $transformer): JsonResponse
+    protected function authenticationResponse(AuthenticatorInterface $authenticator, TransformerAbstract $transformer): JsonResponse
     {
-        return $channel->errors()->any() ?
-            $this->failedResponse($channel) :
-            $this->successResponse($channel, $transformer);
+        return $authenticator->errors()->any() ?
+            $this->failedResponse($authenticator) :
+            $this->successResponse($authenticator, $transformer);
     }
 
-    protected function successResponse(ChannelInterface $channel, TransformerAbstract $transformer): JsonResponse
+    protected function successResponse(AuthenticatorInterface $authenticator, TransformerAbstract $transformer): JsonResponse
     {
         return $this->success([
-            'channel' => $channel->getName(),
-            'token' => $channel->getStringToken(),
+            'channel' => $authenticator->getName(),
+            'token' => $authenticator->getStringToken(),
             'resource' => fractal_data(
-                $channel->getAuthenticatable(),
+                $authenticator->getAuthenticatable(),
                 $transformer,
             ),
         ]);
     }
 
-    protected function failedResponse(ChannelInterface $channel): JsonResponse
+    protected function failedResponse(AuthenticatorInterface $authenticator): JsonResponse
     {
         return $this->badRequest(
-            $channel->errors()->toArray(),
-            $channel->errors()->first(),
+            $authenticator->errors()->toArray(),
+            $authenticator->errors()->first(),
         );
     }
 }
