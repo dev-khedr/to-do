@@ -1,23 +1,22 @@
-# Use PHP 8.2 FPM Alpine base image
-FROM php:8.2-fpm-alpine
+# Base stage for common dependencies
+FROM php:8.2-fpm-alpine AS base
 
-# Set UID and GID as environment variables
 ARG UID
 ARG GID
 ENV UID=${UID} GID=${GID}
 
-# Set working directory
 WORKDIR /var/www/html
 
-# Install dependencies
 RUN apk --no-cache add \
     build-base \
-    libpng \
-    libpng-dev \
-    libjpeg-turbo \
-    libjpeg-turbo-dev \
+    curl \
     freetype \
     freetype-dev \
+    git \
+    libjpeg-turbo \
+    libjpeg-turbo-dev \
+    libpng \
+    libpng-dev \
     libzip \
     libzip-dev \
     icu \
@@ -25,54 +24,59 @@ RUN apk --no-cache add \
     oniguruma \
     oniguruma-dev \
     openssl-dev \
-    zip \
     unzip \
-    git \
-    curl \
-    vim \
-    autoconf \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    zip
+
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
-    gd \
-    pdo_mysql \
-    mbstring \
-    zip \
     exif \
-    pcntl \
+    gd \
     intl \
-    && apk del --no-cache \
-    libpng-dev \
-    libjpeg-turbo-dev \
-    freetype-dev \
-    libzip-dev \
-    icu-dev \
-    oniguruma-dev \
-    openssl-dev
+    mbstring \
+    pcntl \
+    zip
 
-# Install MongoDB PHP extension
-RUN apk --no-cache add \
-    autoconf \
-    && pecl install mongodb \
-    && docker-php-ext-enable mongodb \
-    && apk del --no-cache autoconf
-
-# Install Redis dependencies
-RUN apk --no-cache add \
-    autoconf \
-    && pecl install redis \
-    && docker-php-ext-enable redis \
-    && apk del --no-cache autoconf
-
-# Install Xdebug dependencies
+# Install MongoDB extension
 RUN apk --no-cache add \
     autoconf \
     linux-headers \
-    && pecl install xdebug \
-    && docker-php-ext-enable xdebug \
-    && apk del --no-cache autoconf
+    && pecl install mongodb && docker-php-ext-enable mongodb
 
-# Copy Xdebug configuration
-COPY ./rootfs/etc/php82/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+# Install MySQL extension
+RUN docker-php-ext-install pdo_mysql
+
+# Install SQLite extension
+RUN apk --no-cache add \
+    sqlite \
+    sqlite-dev \
+    && docker-php-ext-install pdo_sqlite
+
+# Install PostgreSQL extension
+RUN apk --no-cache add \
+    postgresql-dev \
+    && docker-php-ext-install pdo_pgsql pgsql
+
+# Remove build dependencies
+RUN apk del --no-cache \
+    autoconf \
+    freetype-dev \
+    icu-dev \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    libzip-dev \
+    linux-headers \
+    oniguruma-dev \
+    openssl-dev
+
+# Development stage
+FROM base AS development
+
+# Install Xdebug and other development tools
+RUN apk --no-cache add \
+    autoconf \
+    linux-headers \
+    && pecl install xdebug && docker-php-ext-enable xdebug
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -81,12 +85,45 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN addgroup -g ${GID} laravel && adduser -u ${UID} -G laravel -s /bin/bash -D laravel
 
 # Change ownership
-RUN chown -R laravel:laravel /var/www
+RUN chown -R laravel:laravel /var/www/html
 
-# Copy php configuration file
-COPY ./rootfs/etc/php82/local.ini /usr/local/etc/php/conf.d/local.ini
+# Copy application source
+COPY --chown=laravel:laravel . /var/www/html
 
-# Expose port 9000 and start php-fpm server
+# Copy development PHP configuration file
+COPY ./rootfs/etc/php82/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+# Copy general PHP configuration file
+COPY ./rootfs/etc/php82/dev.ini /usr/local/etc/php/conf.d/local.ini
+
+USER laravel
+
 EXPOSE 9000
 
 CMD ["php-fpm"]
+
+# Production stage
+FROM base AS production
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Add laravel user and group
+RUN addgroup -g ${GID} laravel && adduser -u ${UID} -G laravel -s /bin/bash -D laravel
+
+# Change ownership and create necessary directories
+RUN mkdir -p /var/www/html/vendor \
+    && chown -R laravel:laravel /var/www/html
+
+# Copy application source
+COPY --chown=laravel:laravel . /var/www/html
+
+# Copy general PHP configuration file
+COPY ./rootfs/etc/php82/prod.ini /usr/local/etc/php/conf.d/local.ini
+
+USER laravel
+
+EXPOSE 9000
+
+CMD ["php-fpm"]
+

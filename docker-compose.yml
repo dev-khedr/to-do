@@ -4,6 +4,7 @@ services:
         build:
             context: ./compose/8.2
             dockerfile: Dockerfile
+            target: development
             args:
                 - 'UID=${UID:-1000}'
                 - 'GID=${GID:-1000}'
@@ -20,6 +21,7 @@ services:
         build:
             context: ./compose/nginx
             dockerfile: Dockerfile
+            target: development
             args:
                 - 'UID=${UID:-1000}'
                 - 'GID=${GID:-1000}'
@@ -29,7 +31,6 @@ services:
             - './src:/var/www/html'
         depends_on:
             - php
-            - mysql
         networks:
             - local
     mysql:
@@ -48,6 +49,16 @@ services:
         volumes:
             - 'mysql-data:/var/lib/mysql'
             - './compose/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
+            - './compose/mysql/init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql'
+        networks:
+            - local
+    redis:
+        container_name: '${DOCKER_PREFIX_NAME}-redis'
+        image: 'redis:alpine'
+        ports:
+            - "${DOCKER_REDIS_PORT:-6379}:6379"
+        volumes:
+            - 'redis-data:/data'
         networks:
             - local
     mailhog:
@@ -73,6 +84,7 @@ services:
         build:
             context: ./compose/8.2
             dockerfile: Dockerfile
+            target: development
             args:
                 - 'UID=${UID:-1000}'
                 - 'GID=${GID:-1000}'
@@ -87,7 +99,10 @@ services:
 volumes:
     mysql-data:
         driver: local
+    redis-data:
+        driver: local
 
 networks:
     local:
         driver: bridge
+

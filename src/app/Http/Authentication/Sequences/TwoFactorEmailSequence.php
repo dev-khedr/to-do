@@ -7,9 +7,10 @@ use App\Enums\VerificationType;
 use App\Mail\TwoFactorMail;
 use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
 use Raid\Guardian\Sequences\Contracts\QueueSequenceInterface;
+use Raid\Guardian\Sequences\Contracts\SequenceInterface;
 use Raid\Guardian\Traits\Sequences\HasQueue;
 
-class TwoFactorEmailSequence implements QueueSequenceInterface
+class TwoFactorEmailSequence implements SequenceInterface
 {
     use HasQueue;
 
