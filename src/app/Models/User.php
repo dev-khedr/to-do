@@ -29,7 +29,7 @@ class User extends IlluminateUser implements AuthenticatableInterface
     ];
 
     protected $hidden = [
-//        'password',
+        //        'password',
     ];
 
     protected function casts(): array

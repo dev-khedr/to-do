@@ -6,7 +6,6 @@ use App\Core\Integrations\Mail\MailService;
 use App\Enums\VerificationType;
 use App\Mail\TwoFactorMail;
 use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
-use Raid\Guardian\Sequences\Contracts\QueueSequenceInterface;
 use Raid\Guardian\Sequences\Contracts\SequenceInterface;
 use Raid\Guardian\Traits\Sequences\HasQueue;
 
@@ -16,9 +15,7 @@ class TwoFactorEmailSequence implements SequenceInterface
 
     public function __construct(
         private readonly MailService $mailService,
-    ) {
-
-    }
+    ) {}
 
     public function handle(AuthenticatorInterface $authenticator): void
     {

@@ -17,7 +17,7 @@ class RenderException
 
     public static function new(): static
     {
-        return new static();
+        return new static;
     }
 
     public function render(Throwable $e, Request $request): ?JsonResponse

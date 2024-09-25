@@ -1,9 +1,6 @@
 <?php
 
 use App\Http\Authentication\Authenticators\SystemAuthenticator;
-use Raid\Guardian\Authenticators\DefaultAuthenticator;
-use Raid\Guardian\Norms\MatchingPasswordNorm;
-use Raid\Guardian\Matchers\EmailMatcher;
 
 return [
 

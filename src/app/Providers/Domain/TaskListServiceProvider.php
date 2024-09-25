@@ -13,7 +13,7 @@ class TaskListServiceProvider extends ServiceProvider implements DeferrableProvi
     public function register(): void
     {
         $this->app->bind(TaskListRepositoryInterface::class, function () {
-            return new TaskListRepository(new TaskList());
+            return new TaskListRepository(new TaskList);
         });
     }
 

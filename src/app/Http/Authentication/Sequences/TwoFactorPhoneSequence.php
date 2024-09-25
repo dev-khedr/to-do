@@ -14,9 +14,7 @@ class TwoFactorPhoneSequence implements QueueSequenceInterface
 
     public function __construct(
         private readonly SmsService $smsService,
-    ) {
-
-    }
+    ) {}
 
     public function handle(AuthenticatorInterface $authenticator): void
     {

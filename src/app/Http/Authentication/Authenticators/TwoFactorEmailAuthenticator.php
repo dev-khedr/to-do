@@ -2,10 +2,10 @@
 
 namespace App\Http\Authentication\Authenticators;
 
+use App\Http\Authentication\Matchers\EmailMatcher;
 use App\Http\Authentication\Norms\MatchingPasswordNorm;
 use App\Http\Authentication\Norms\VerifiedNorm;
 use App\Http\Authentication\Sequences\TwoFactorEmailSequence;
-use App\Http\Authentication\Matchers\EmailMatcher;
 use Raid\Guardian\Authenticators\Authenticator;
 use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
 use Raid\Guardian\Authenticators\Contracts\ShouldRunNorms;

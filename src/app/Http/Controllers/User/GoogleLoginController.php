@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Authentication\Authenticators\GoogleAuthenticator;
-use App\Http\Authentication\Authenticators\TwoFactorEmailAuthenticator;
-use App\Http\Authentication\Authenticators\TwoFactorPhoneAuthenticator;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Requests\User as Requests;
 use App\Http\Transformers\User\UserTransformer as Transformer;

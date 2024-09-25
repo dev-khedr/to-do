@@ -13,7 +13,7 @@ class AdminServiceProvider extends ServiceProvider implements DeferrableProvider
     public function register(): void
     {
         $this->app->bind(AdminRepositoryInterface::class, function () {
-            return new AdminRepository(new Admin());
+            return new AdminRepository(new Admin);
         });
     }
 

@@ -2,6 +2,4 @@
 
 namespace App\Core\Services\Contracts;
 
-interface ServiceInterface
-{
-}
+interface ServiceInterface {}

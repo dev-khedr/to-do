@@ -4,8 +4,5 @@ namespace App\Core\Integrations\Sms;
 
 class SmsService
 {
-    public function send(string $phone, string $message): void
-    {
-
-    }
+    public function send(string $phone, string $message): void {}
 }
