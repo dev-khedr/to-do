@@ -2,6 +2,7 @@
 
 namespace App\Http\Authentication\Guardians;
 
+use App\Http\Authentication\Authenticators\GoogleAuthenticator;
 use App\Http\Authentication\Authenticators\SystemAuthenticator;
 use App\Http\Authentication\Authenticators\TwoFactorEmailAuthenticator;
 use App\Http\Authentication\Authenticators\TwoFactorPhoneAuthenticator;
@@ -21,5 +22,6 @@ class UserGuardian extends Guardian implements GuardianInterface
         SystemAuthenticator::class,
         TwoFactorEmailAuthenticator::class,
         TwoFactorPhoneAuthenticator::class,
+        GoogleAuthenticator::class,
     ];
 }
