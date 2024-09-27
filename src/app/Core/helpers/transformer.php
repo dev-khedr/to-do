@@ -39,7 +39,7 @@ if (! function_exists('fractal_with')) {
     function fractal_with(mixed $data, TransformerAbstract $transformer, array $includes = []): Fractal
     {
         return fractal($data, $transformer)
-            ->serializeWith(new ArraySerializer())
+            ->serializeWith(new ArraySerializer)
             ->parseIncludes($includes);
     }
 }

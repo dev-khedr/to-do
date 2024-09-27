@@ -9,6 +9,7 @@ Route::prefix('/v1/users/login')
         Route::post('/', [User\LoginController::class, 'login']);
         Route::post('/two-factor/email', [User\LoginController::class, 'loginWithTwoFactorEmail']);
         Route::post('/two-factor/phone', [User\LoginController::class, 'loginWithTwoFactorPhone']);
+        Route::post('/google', [User\GoogleLoginController::class, 'login']);
     });
 
 // verification routes

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Authentication\Authenticators\AdminAuthenticator;
-use App\Http\Authentication\Authenticators\UserAuthenticator;
+use App\Http\Authentication\Guardians\AdminGuardian;
+use App\Http\Authentication\Guardians\UserGuardian;
 use App\Models\Admin;
 use App\Models\User;
 
@@ -45,11 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        AdminAuthenticator::getName() => [
+        AdminGuardian::getName() => [
             'driver' => 'sanctum',
             'provider' => 'admins',
         ],
-        UserAuthenticator::getName() => [
+        UserGuardian::getName() => [
             'driver' => 'sanctum',
             'provider' => 'users',
         ],

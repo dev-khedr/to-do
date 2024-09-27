@@ -1,28 +1,25 @@
 <?php
 
-namespace App\Http\Authentication\Steps;
+namespace App\Http\Authentication\Sequences;
 
 use App\Core\Integrations\Mail\MailService;
 use App\Enums\VerificationType;
 use App\Mail\TwoFactorMail;
-use Raid\Guardian\Channels\Contracts\ChannelInterface;
-use Raid\Guardian\Steps\Contracts\ShouldRunQueue;
-use Raid\Guardian\Steps\Contracts\StepInterface;
-use Raid\Guardian\Traits\Steps\HasQueue;
+use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
+use Raid\Guardian\Sequences\Contracts\SequenceInterface;
+use Raid\Guardian\Traits\Sequences\HasQueue;
 
-class TwoFactorEmailStep implements ShouldRunQueue, StepInterface
+class TwoFactorEmailSequence implements SequenceInterface
 {
     use HasQueue;
 
     public function __construct(
         private readonly MailService $mailService,
-    ) {
+    ) {}
 
-    }
-
-    public function handle(ChannelInterface $channel): void
+    public function handle(AuthenticatorInterface $authenticator): void
     {
-        $authenticatable = $channel->getAuthenticatable();
+        $authenticatable = $authenticator->getAuthenticatable();
 
         $verification = $authenticatable->verification()->create([
             'type' => VerificationType::TWO_FACTOR_EMAIL,

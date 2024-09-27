@@ -5,39 +5,39 @@ namespace App\Core\Services;
 use App\Core\Services\Contracts\ServiceInterface;
 use Exception;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Auth;
+use Raid\Guardian\Authenticatable\Contracts\AuthenticatableInterface;
 use Raid\Guardian\Authenticators\Contracts\AuthenticatorInterface;
-use Raid\Guardian\Channels\Contracts\ChannelInterface;
+use Raid\Guardian\Guardians\Contracts\GuardianInterface;
 use Raid\Guardian\Tokens\Contracts\TokenInterface;
 
 abstract class AuthenticationService extends Service implements ServiceInterface
 {
-    protected AuthenticatorInterface $authenticator;
+    protected GuardianInterface $guardian;
 
-    protected function setAuthenticator(AuthenticatorInterface $authenticator): void
+    protected function setGuardian(GuardianInterface $guardian): void
     {
-        $this->authenticator = $authenticator;
+        $this->guardian = $guardian;
     }
 
-    public function getAuthenticator(): AuthenticatorInterface
+    public function getGuardian(): GuardianInterface
     {
-        return $this->authenticator;
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function attempt(array $data, ?string $channel = null, ?TokenInterface $token = null): ChannelInterface
-    {
-        return $this->getAuthenticator()->attempt($data, $channel, $token);
+        return $this->guardian;
     }
 
     /**
      * @throws Exception
      */
-    public function login(Authenticatable $authenticatable, ?string $channel = null, ?TokenInterface $token = null): ChannelInterface
+    public function attempt(array $data, ?string $authenticator = null, ?TokenInterface $token = null): AuthenticatorInterface
     {
-        return $this->getAuthenticator()->login($authenticatable, $channel, $token);
+        return $this->getGuardian()->attempt($data, $authenticator, $token);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function login(AuthenticatableInterface $authenticatable, ?string $authenticator = null, ?TokenInterface $token = null): AuthenticatorInterface
+    {
+        return $this->getGuardian()->login($authenticatable, $authenticator, $token);
     }
 
     public function getProfile(): Authenticatable

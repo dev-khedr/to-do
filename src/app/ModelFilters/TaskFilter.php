@@ -4,6 +4,4 @@ namespace App\ModelFilters;
 
 use EloquentFilter\ModelFilter;
 
-class TaskFilter extends ModelFilter
-{
-}
+class TaskFilter extends ModelFilter {}
